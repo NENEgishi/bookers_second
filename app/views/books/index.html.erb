@@ -1,0 +1,85 @@
+<% if @book.errors.any? %>
+<div class="alert alert-warning">
+	<h2><%=@book.errors.count%>error prohibited this obj from being saved:</h2>
+	<ul>
+		<% @book.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<!-- <th><%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg' %>
+					</th> -->
+					<th><% if current_user.profile_image_id != nil%>
+						<%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
+						<% else %>
+						<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
+						<% end %></th>
+					</tr>
+					<tr>
+						<th><h5>name</h5></th>
+						<th><%=current_user.name%></th>
+					</tr>
+					<tr>
+						<th><h5>introduction</h5></th>
+						<th><%=current_user.introduction%></th>
+					</tr>
+				</tbody>
+			</table>
+
+			<%= link_to '', edit_user_path(current_user),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+
+
+
+			<h2>New book</h2>
+			<%=form_for(@book) do |f|%>
+			<h4>Title</h4>
+			<%=f.text_field :title%>
+			<h4>Body</h4>
+			<%=f.text_area :body%><br>
+			<button class="btn btn-primary" type="submit">Create Book</button>
+			<% end %>
+		</div>
+
+
+		<div class="col-xs-9">
+			<h2>Books</h2>
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Title</th>
+						<th>Body</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @books.each do |book| %>
+					<tr>
+						<td>
+						<%=link_to user_path(book.user) do%>
+							<%=attachment_image_tag book.user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" , folback:"no_image.jpg" %>
+							<% end %>
+						</td>
+						<td><%=link_to book.title,book%></td>
+						<td><%=book.body%></td>
+						<td></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="container"> -->
+<!-- </div> -->
+
+

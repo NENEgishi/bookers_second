@@ -1,0 +1,79 @@
+<%=flash[:book]%>
+<% if flash[:update] %>
+<div class="flash">
+	<%= flash[:update] %>
+</div>
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<h2>User info</h2>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<!-- <th><%=attachment_image_tag @book.user, :profile_image, :fill,60, 60, format: 'jpeg' %></th> -->
+						<% if @book.user.profile_image_id != nil%>
+							<%=attachment_image_tag @book.user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
+							<% else %>
+							<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
+							<% end %>
+					</tr>
+					<tr>
+						<th><h5>name</h5></th>
+						<th><%=@book.user.name%></th>
+					</tr>
+					<tr>
+						<th><h5>introduction</h5></th>
+						<th><%=@book.user.introduction%></th>
+					</tr>
+				</tbody>
+			</table>
+
+			<%= link_to '', edit_user_path(@book.user_id),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+
+
+
+			<h2>New book</h2>
+			<%=form_for(@new_book) do |f|%>
+			<h4>Title</h4>
+			<%=f.text_field :title%>
+			<h4>Body</h4>
+			<%=f.text_area :body%><br>
+			<button class="btn btn-primary" type="submit">Create Book</button>
+			<% end %>
+		</div>
+
+		<div class="col-xs-9">
+			<h2>Book detail</h2>
+			<table class="table table-hover table-inverse">
+				<tbody>
+					<tr>
+						<td><%=link_to user_path(@book.user) do %>
+							<!-- <%=attachment_image_tag @book.user, :profile_image, :fill,30, 30, format: 'jpeg' %><br> -->
+							<% if @book.user.profile_image_id != nil%>
+							<%=attachment_image_tag @book.user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" %>
+							<% else %>
+							<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
+							<% end %><br>
+							<%=@book.user.name %>
+							<% end %></td>
+
+							<td><%=@book.title%></td>
+							<td><%=@book.body%></td>
+							<% if current_user.id == @book.user_id %>
+							<td><%=link_to 'Edit',edit_book_path %></td>
+
+							<td><%=link_to "Destroy",book_path(@book.id),method: :delete %></td>
+							<% end %>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+	<!-- <div class=container></div> -->
+
+
+
