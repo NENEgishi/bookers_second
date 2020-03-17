@@ -13,10 +13,10 @@
 					<tr>
 						<!-- <th><%=attachment_image_tag @book.user, :profile_image, :fill,60, 60, format: 'jpeg' %></th> -->
 						<% if @book.user.profile_image_id != nil%>
-							<%=attachment_image_tag @book.user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
-							<% else %>
-							<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
-							<% end %>
+						<%=attachment_image_tag @book.user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
+						<% else %>
+						<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
+						<% end %>
 					</tr>
 					<tr>
 						<th><h5>name</h5></th>
