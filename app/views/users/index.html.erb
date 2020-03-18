@@ -5,12 +5,7 @@
 			<table class="table table-striped">
 				<tbody>
 					<tr>
-						<!-- <th><%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg' %></th> -->
-						<th><% if current_user.profile_image_id != nil%>
-							<%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
-							<% else %>
-							<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
-							<% end %></th>
+						<th><%=attachment_image_tag current_user, :profile_image, :fill,60,60,format:'jpeg',class:"profile_image", fallback:"no_image.jpg" %></th>
 						</tr>
 						<tr>
 							<th><h5>name</h5></th>
@@ -49,17 +44,7 @@
 					<tbody>
 						<% @users.each do |user| %>
 						<tr>
-							<td><% if user.profile_image_id != nil%>
-								<!-- <%=attachment_image_tag user, :profile_image, :fill,30, 30, format: 'jpeg' %> -->
-								<% if user.profile_image_id != nil%>
-							<%=attachment_image_tag user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" %>
-							<% else %>
-							<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
-							<% end %>
-								<% else %>
-								<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image">
-								<% end %>
-							</td>
+							<td><%=attachment_image_tag user, :profile_image, :fill,30,30,format:'jpeg',class:"profile_image",fallback:"no_image.jpg",size:'30×30' %>
 							<td><%=user.name%></td>
 							<td><%=link_to 'Show',user_path(user) %></td>
 							<td></td>

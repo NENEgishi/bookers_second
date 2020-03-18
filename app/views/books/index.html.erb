@@ -15,13 +15,7 @@
 			<table class="table table-striped">
 				<tbody>
 					<tr>
-						<!-- <th><%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg' %>
-					</th> -->
-					<th><% if current_user.profile_image_id != nil%>
-						<%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" %>
-						<% else %>
-						<img class="attachment user profile_image fallback" src="/assets/no_image.jpg" alt="No image"/>
-						<% end %></th>
+						<th><%=attachment_image_tag current_user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg", size:'60×60' %></th>
 					</tr>
 					<tr>
 						<th><h5>name</h5></th>
@@ -64,9 +58,10 @@
 					<% @books.each do |book| %>
 					<tr>
 						<td>
-						<%=link_to user_path(book.user) do%>
-							<%=attachment_image_tag book.user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" , folback:"no_image.jpg" %>
+							<%=link_to user_path(book.user) do%>
+							<%=attachment_image_tag book.user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg", size:'30×30' %>
 							<% end %>
+
 						</td>
 						<td><%=link_to book.title,book%></td>
 						<td><%=book.body%></td>
