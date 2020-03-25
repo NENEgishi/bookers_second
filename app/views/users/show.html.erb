@@ -19,7 +19,7 @@
 					<tr>
 						<th>
 							<%=link_to user_path(@user) do%>
-							<%=attachment_image_tag @user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg" %>
+							<%=attachment_image_tag @user, :profile_image, :fill,60, 60, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg",size:'40x40' %>
 							<% end %>
 						</th>
 					</tr>
@@ -55,7 +55,7 @@
 					<tr>
 						<td>
 							<%=link_to user_path(@user) do%>
-							<%=attachment_image_tag @user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg" %>
+							<%=attachment_image_tag @user, :profile_image, :fill,30, 30, format: 'jpeg',class:"profile_image" , fallback:"no_image.jpg",size:'40x40' %>
 							<% end %>
 						</td>
 						<td><%=link_to book.title,book_path(book.id) %></td>
