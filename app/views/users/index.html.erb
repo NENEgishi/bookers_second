@@ -6,45 +6,38 @@
 				<tbody>
 					<tr>
 						<th><%=attachment_image_tag current_user, :profile_image, :fill,60,60,format:'jpeg',class:"profile_image", fallback:"no_image.jpg" %></th>
-						</tr>
-						<tr>
-							<th><h5>name</h5></th>
-							<th><%=current_user.name%></th>
-						</tr>
-						<tr>
-							<th><h5>introduction</h5></th>
-							<th><%=current_user.introduction%></th>
-						</tr>
-					</tbody>
-				</table>
+					</tr>
+					<tr>
+						<th><h5>name</h5></th>
+						<th><%=current_user.name%></th>
+					</tr>
+					<tr>
+						<th><h5>introduction</h5></th>
+						<th><%=current_user.introduction%></th>
+					</tr>
+				</tbody>
+			</table>
 
-				<%= link_to '', edit_user_path(current_user),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+			<%= link_to '', edit_user_path(current_user),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+			<!-- 部分テンプレート -->
+			<%=render 'users/list',book:@book %>
+		</div>
 
-				<h2>New book</h2>
-				<%=form_for(@book) do |f|%>
-				<h4>Title</h4>
-				<%=f.text_field :title%>
-				<h4>Body</h4>
-				<%=f.text_area :body%><br>
-				<button class="btn btn-primary" type="submit">Create Book</button>
-				<% end %>
-			</div>
-			<div class="col-xs-9">
-
-				<h2>Users</h2>
-				<table class="table table-hover table-inverse">
-					<thead>
-						<tr>
-							<th>profile_image_id</th>
-							<th>name</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% @users.each do |user| %>
-						<tr>
-							<td><%=attachment_image_tag user, :profile_image, :fill,30,30,format:'jpeg',class:"profile_image",fallback:"no_image.jpg",size:'30×30' %>
+		<div class="col-xs-9">
+			<h2>Users</h2>
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th>profile_image_id</th>
+						<th>name</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%=attachment_image_tag user, :profile_image, :fill,30,30,format:'jpeg',class:"profile_image",fallback:"no_image.jpg",size:'30×30' %>
 							<td><%=user.name%></td>
 							<td><%=link_to 'Show',user_path(user) %></td>
 							<td></td>

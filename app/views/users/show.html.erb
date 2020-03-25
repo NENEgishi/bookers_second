@@ -3,11 +3,13 @@
 	<%= flash[:in] %>
 </div>
 <% end %>
+
 <% if flash[:user_update] %>
 <div class="flash">
 	<%= flash[:user_update] %>
 </div>
 <% end %>
+
 <div class= container>
 	<div class="row">
 		<div class="col-xs-3">
@@ -33,15 +35,8 @@
 			</table>
 			<%= link_to '', edit_user_path(@user.id),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
 
-			<h2>New book</h2>
-			<%=form_for(@book) do |f|%>
-			<h4>Title</h4>
-			<%=f.text_field :title%>
-			<h4>Body</h4>
-			<%=f.text_area :body%><br>
-			<!-- <span><%=f.submit %></span> -->
-			<button class="btn btn-primary" type="submit">Create Book</button>
-			<% end %>
+			<!-- 部分テンプレート -->
+			<%=render 'users/list',book:@book %>
 		</div>
 
 		<div class="col-xs-9">

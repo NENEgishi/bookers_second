@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 		@books = Book.all
 		@book=Book.new
 	end
+	
 	def show
 		@book = Book.find(params[:id])
   		@new_book = Book.new
@@ -35,10 +36,10 @@ class BooksController < ApplicationController
 			flash[:update] = "You have updated book successfully."
 			redirect_to book_path(@book.id)
 		else
-			
 			render :edit
 		end
 	end
+
 	def destroy
 		book = Book.find(params[:id])
 		book.destroy
