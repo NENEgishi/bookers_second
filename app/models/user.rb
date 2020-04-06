@@ -7,5 +7,6 @@ class User < ApplicationRecord
 	has_many :books
   validates :name, presence: true,  length: { in: 2..20 }
   validates :introduction, length: {maximum: 50}
+  has_many :likes
   # Person.create.errors[:name].any?
 end
