@@ -71,4 +71,4 @@ group :test do
   gem "factory_bot_rails"
   gem 'faker'
 end
-gem 'kaminari','~> 1.1.1'
+gem 'kaminari','~> 1.2.1'
